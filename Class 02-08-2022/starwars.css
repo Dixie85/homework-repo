@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    justify-content: center;
+
+}
+
+body {
+    background-color: rgba(62, 56, 125, 0.614);
+}
+
+.main{
+    padding: 0px 25px;
+
+    
+}
+
+.wrapper{
+    padding: 10px 15px;
+    display: flex;
+}
+
+img {
+    height: 400px;
+    width: 100%;
+
+}
+
+.buttons{
+    padding: 0px;
+}
+
+button{
+    background-color: lightslategrey;
+    color: greenyellow;
+    font-size: 14px;
+    font-family: sans-serif;
+    border-radius: 5px;
+    padding: 5px;
+}
