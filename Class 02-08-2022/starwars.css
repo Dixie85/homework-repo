@@ -16,6 +16,14 @@ body {
     
 }
 
+table{
+    text-align: center;
+}
+
+tr, th, td {
+    background-color: rgba(112, 107, 173, 0.614);
+}
+
 .wrapper{
     padding: 10px 15px;
     display: flex;
