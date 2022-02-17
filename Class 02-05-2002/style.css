@@ -1,0 +1,23 @@
+* {
+margin: 0px;
+padding: 0px;
+box-sizing: border-box;
+font-size: 12px;
+}
+
+body {
+justify-content: center;
+text-align: center; 
+}
+
+
+img {
+    height: 50px;
+    width: 50px;
+    border-radius: 15px;
+     
+}
+
+a {
+    margin:5px
+}
