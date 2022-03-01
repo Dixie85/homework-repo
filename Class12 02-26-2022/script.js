@@ -2,7 +2,6 @@ const PreviousBtn = document.getElementById("peoplePrevious");
 const NextBtn = document.getElementById("peopleNext");
 const starships = document.getElementById("starships");
 const person = document.getElementById("person");
-const tables = document.getElementById("table");
 
 class Person{
     constructor({name, height, mass, gender, birth_year, homeworld, films}) {
@@ -86,25 +85,33 @@ function storeMemory(r, flow) {
             return new Ship(e);
         }
     });
-    // console.log(memory.currentData) 
+    console.log(memory.currentData) 
 };
 
 async function getInfo(url, flow) {
     if (flow === memory.peopleUrl){
         const data = await getData(url);
         storeMemory(data, flow);
-        console.log(memory)
+        console.log(memory);
+        document.querySelector("#Titles").innerHTML = "";
+        document.querySelector("#Data").innerHTML = "";
+        displayData(memory.currentData, flow);
     }
     if(flow === memory.starshipsUrl){
         const data = await getData(url);
         storeMemory(data, flow);
-        console.log(memory)
+        console.log(memory);
+        document.querySelector("#Titles").innerHTML = "";
+        document.querySelector("#Data").innerHTML = "";
+        displayData(memory.currentData, flow);
     }
  };
 
+ 
 person.addEventListener("click", async () => {
     console.log(`Person butoon clicked`)
-    getInfo(`${memory.url}${memory.peopleUrl}`, memory.peopleUrl)
+    getInfo(`${memory.url}${memory.peopleUrl}`, memory.peopleUrl);
+    
 });
 
 starships.addEventListener("click", async () => {
@@ -123,165 +130,35 @@ PreviousBtn.addEventListener("click", async () => {
 });
 
 
-let me = new Person({
-    Appearances: null,
-    birth_year: "19BBY",
-    gender: "male",
-    height: "172cm",
-    homeworld: "https://swapi.dev/api/planets/1/",
-    mass: "77kg",
-    name: "Luke Skywalker"
-});
-
-console.log(Person.getHomeworld(me));
-console.log(me);
-
-async function getHome(){
-    let data = await fetch("https://swapi.dev/api/planets/1/");
-    console.log(data)
+function displayData(data, flow){
+    if(flow === memory.peopleUrl){
+    const titleKey = Object.keys(data[0]).filter(key => key);
+    console.log(titleKey)
+    const trH = document.createElement("tr");
+    trH.innerHTML = titleKey.reduce((str, key) => str += `<th>${key}<th/>`,"");
+    document.querySelector("#Titles").appendChild(trH);
+    console.log(trH)    
+        data.forEach(e => {            
+            const trB = document.createElement("tr");
+            trB.innerHTML = titleKey.reduce((str, key) => str += `<td>${e[key]}<td/>`, "")
+            trB.innerHTML +=  `<td><button class="Details">Details</button><td/>`;
+            trB.querySelector(".Details").addEventListener("click", e => {}); //${e.Homeworld}
+            document.querySelector("#Data").appendChild(trB);
+        })
+    }
+    if(flow === memory.starshipsUrl){
+        const titleKey = Object.keys(data[0]).filter(key => key);
+        console.log(titleKey)
+        const trH = document.createElement("tr");
+        trH.innerHTML = titleKey.reduce((str, key) => str += `<th>${key}<th/>`,"");
+        document.querySelector("#Titles").appendChild(trH);
+        console.log(trH)    
+            data.forEach(e => {            
+                const trB = document.createElement("tr");
+                trB.innerHTML = titleKey.reduce((str, key) => str += `<td>${e[key]}<td/>`, "")
+                trB.innerHTML +=  `<td><button class="Details">Details</button><td/>`;
+                document.querySelector("#Data").appendChild(trB);
+            })
+        }
+              
 };
-
-// (async () => {
-//     console.log(await getData(`${memory.url}${memory.starshipsUrl}`));
-//     // await getPeople(`${memory.url}${memory.peopleUrl}`)
-// })();
-
-
-// async function getPeople(url) {
-//    const data = await getData(url);
-//    storeMemory(data);
-//    console.log(memory)
-// };
-
-// async function getShip(url) {
-//     const data = await getData(url);
-//     storeMemory(data);
-//     console.log(memory)
-//  };
-
-
-
-
-// function starshipsMemory(r) {
-    //     memory.starshipsPrevious = r.previous;
-    //     memory.starshipsNext = r.next;
-    //     memory.starshipsData = r.results;
-    //     console.log(memory)
-    // }
-
-// function showData(data){
-//    const people = ["name", "height", "mass", "birth_year", "gender", "films"];
-//    const ships = [ "name", "model", "manufacturer", "cost_in_credits", "passengers", "starship_class"];
-
-//     if(data === memory.peopleData){
-//         const pTitle = Object.keys(data[0]).filter(key => {
-//             for(let pip of people){
-//                 if(key === pip){
-//                    return key
-//                 }
-//                 continue
-//             }
-//         });
-//         const tr = createElem("tr");
-//         $(tr).html(pTitle.reduce((str, key) => str += `<th>${key}</th>`,""));
-//         $("#peopleTitles").html(tr);
-//         console.log(tr)
-//         $("#peopleData").html(data.reduce((str, char)=>{
-//             const columns = pTitle.reduce((str, key) => {
-//                 if(key === "films"){
-//                     return str += `<td>${char[key].length}</td>`
-//                 };
-//                 return str += `<td>${char[key]}</td>`;
-//             }, "");
-//             return str += `<tr>${columns}</tr>`
-//         },""));
-//     };
-
-//     if(data === memory.starshipsData) {
-//         const shTitle = Object.keys(data[0]).filter(key => {
-//             for(let ship of ships){
-//                 if(key === ship){
-//                    return key
-//                 }
-//                 continue
-//             }
-//         });
-//         const tr = createElem("tr");
-//         $(tr).html(shTitle.reduce((str, key) => str += `<th>${key}</th>`,""));
-//         $("#starshipsTitles").html(tr);
-//         console.log(tr)
-//         $("#starshipsData").html(data.reduce((str, char)=>{
-//             const columns =shTitle.reduce((str, key) => {
-//                 if(key === "passengers"){
-//                     if (isNaN(parseInt(char[key]))){
-//                         return str +=`<td>No Info</td>`
-//                     };
-//                     return str += `<td>${parseInt(char[key])}</td>`
-//                 };
-//                 return str += `<td>${char[key]}</td>`;
-//             }, "");
-//             return str += `<tr>${columns}</tr>`
-//         },""));
-//     };
-// };
-
-
-// function createElem(e){
-//     return document.createElement(e)
-// };
-
-
-
-// $(document).ready(function() {
-//     const peoplePreviousBtn = $("#peoplePrevious").hide();
-//     const peopleNextBtn = $("#peopleNext").hide();
-//     const starshipsPreviousBtn = $("#starshipsPrevious").hide();
-//     const starshipsNextBtn = $("#starshipsNext").hide();
-//     const starships = $("#starships");
-//     const person = $("#person");
-//     const tables = $("table").hide();
-    
-//     person.click(e => memory.peopleUrl && getData(memory.peopleUrl)
-//     .then(r => peopleMemory(r))
-//     .then(r => showData(memory.peopleData))
-//     .then(peopleNextBtn.show())
-//     .then(person.hide())
-//     .then(tables.show())
-//     );
-
-//     starships.click(e => memory.starshipsUrl && getData(memory.starshipsUrl)
-//     .then(r => starshipsMemory(r))
-//     .then(r => showData(memory.starshipsData))
-//     .then(starshipsNextBtn.show())
-//     .then(starships.hide())
-//     .then(tables.show())
-//     );
-    
-//     peoplePreviousBtn.click(e => memory.peoplePrevious && getData(memory.peoplePrevious)
-//     .then(r => peopleMemory(r))
-//     .then(r => showData(memory.peopleData))
-//     .then(peopleNextBtn.show())
-//     .then(peoplePreviousBtn.hide())
-//     );
-
-//     peopleNextBtn.click(e => memory.peopleNext && getData(memory.peopleNext)
-//     .then(r => peopleMemory(r))
-//     .then(r => showData(memory.peopleData))
-//     .then(peoplePreviousBtn.show())
-//     .then(peopleNextBtn.hide())    
-//     );
-   
-//     starshipsPreviousBtn.click(e => memory.starshipsPrevious && getData(memory.starshipsPrevious)
-//     .then(r => starshipsMemory(r))
-//     .then(r => showData(memory.starshipsData))
-//     .then(starshipsNextBtn.show())
-//     .then(starshipsPreviousBtn.hide())
-//     );
-
-//     starshipsNextBtn.click(e => memory.starshipsNext && getData(memory.starshipsNext)
-//     .then(r => starshipsMemory(r))
-//     .then(r => showData(memory.starshipsData))
-//     .then(starshipsPreviousBtn.show())
-//     .then(starshipsNextBtn.hide())
-//     );
-// }); 
