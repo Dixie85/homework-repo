@@ -4,42 +4,49 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- <link rel="stylesheet" href="starwars.css"> -->
+    <link rel="stylesheet" href="starwars.css">
     <title>StarWars</title>
   </head>
-    <body>
+  <body>
 
+    <div class="wrapper buttons">
+      <button id="Previous">Previous</button>
+      <button id="Next">Next</button>
+    </div>
+    
     <div class="main">
+
       <div class="wrapper">
-          <img id="logo" src="" alt="StarWars Logo"> <!-- "https://qph.fs.quoracdn.net/main-qimg-5f1ae16c935668c273f158835de6bb6d" -->
+        <!-- <img id="logo" src="" alt="StarWars Logo"> "https://qph.fs.quoracdn.net/main-qimg-5f1ae16c935668c273f158835de6bb6d" -->
+        <img id="person" src="https://i.pinimg.com/originals/66/88/0c/66880c156d20c45b9d529ee1ca2a8127.png" alt="people"> <!-- "https://i.blogs.es/fdb160/sw/1366_521.jpeg" -->
+        <img id="starships" src="https://cdn4.iconfinder.com/data/icons/movies-2-ultra-color/60/070_-_Millenim_Falcon-512.png" alt="Starships">  <!-- "https://starwarsblog.starwars.com/wp-content/uploads/2021/06/star-wars-14-falcon-tall.jpg" -->
       </div>
-      
+
+
       <div class="wrapper">
-        <img id="person" src="" alt="people"> <!-- "https://i.blogs.es/fdb160/sw/1366_521.jpeg" -->
         <table border = "1">
             <thead id="Titles"></thead>
             <tbody id="Data"></tbody>
         </table >
       </div>
-      <div class="wrapper buttons">
-        <button id="peoplePrevious">Previous</button>
-        <button id="peopleNext">Next</button>
-      </div>
 
+      <div class="wrapper">
+        <table border = "1">
+          <thead id="peopleTitles"></thead>
+          <tbody id="peopleData"></tbody>
+        </table>
+      </div>
      
       <div class="wrapper">
-        <img id="starships" src="" alt="Starships">  <!-- "https://starwarsblog.starwars.com/wp-content/uploads/2021/06/star-wars-14-falcon-tall.jpg" -->
         <table border = "1">
-          <thead id="starshipsTitles"></thead>
-          <tbody id="starshipsData"></tbody>
-      </table>
+          <thead id="planetTitles"></thead>
+          <tbody id="planetData"></tbody>
+        </table>
       </div>
 
     </div>
 
 
-
-    <script src="jquery.js"></script>
     <script src="script.js"></script>
   </body>
 </html>
