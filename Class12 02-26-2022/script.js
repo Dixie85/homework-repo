@@ -60,7 +60,7 @@ class Planet{
     }
 };
 
-    const memory = {
+const memory = {
     url:"https://swapi.dev/api/",
     peopleUrl:"people",
     starshipsUrl:"starships",
@@ -71,7 +71,6 @@ class Planet{
     Next: null,
 };
     
-
 async function getData(url) {
     const data = await (await fetch(url)).json();
     return data;
@@ -103,6 +102,7 @@ async function getInfo(url, flow) {
         storeMemory(data, flow);
         console.log(memory);
         cleanTables();
+        cleanDetailesTables()
         displayData(memory.currentData, flow);
     }
     if(flow === memory.starshipsUrl){
@@ -114,8 +114,6 @@ async function getInfo(url, flow) {
         displayData(memory.currentData, flow);
     }
 };
-
-
 
 person.addEventListener("click", async () => {
     console.log(`Person butoon clicked`)
@@ -197,37 +195,41 @@ function capitalizeAndSeparate(word) {
     .reduce((str, word) => str += `${word} ` ,"");
 };
 
+function creatingTableRowHeadings(data){
+    return Object.keys(data).map(e => capitalizeAndSeparate(e))
+    .reduce((str, key) => str += `<th>${key}<th/>`,``)
+};
+
+function creatingTableRowData(data){
+    return Object.values(data)
+    .reduce((str, key) => str += `<td>${key}<td/>`,``)
+};
+
 function displayInfoPersonAndPlanet(person, planet){
     
     const trHPeople = document.createElement("tr");
-    trHPeople.innerHTML = Object.keys(person).map(e => capitalizeAndSeparate(e))
-    .reduce((str, key) => str += `<th>${key}<th/>`,``);
+    trHPeople.innerHTML = creatingTableRowHeadings(person);
     document.querySelector("#peopleShipTitles").appendChild(trHPeople);
     
     const trDPeople = document.createElement("tr");
-    trDPeople.innerHTML = Object.values(person)
-    .reduce((str, key) => str += `<td>${key}<td/>`,``);
+    trDPeople.innerHTML = creatingTableRowData(person);
     document.querySelector("#peopleShipData").appendChild(trDPeople);
     
     const trHPlanet = document.createElement("tr");
-    trHPlanet.innerHTML = Object.keys(planet).map(e => capitalizeAndSeparate(e))
-    .reduce((str, key) => str += `<th>${key}<th/>`,``);
+    trHPlanet.innerHTML = creatingTableRowHeadings(planet);
     document.querySelector("#planetTitles").appendChild(trHPlanet);
     
     const  trDPlanet = document.createElement("tr");
-    trDPlanet.innerHTML = Object.values(planet)
-    .reduce((str, key) => str += `<td>${key}<td/>`,``);
+    trDPlanet.innerHTML = creatingTableRowData(planet);
     document.querySelector("#planetData").appendChild( trDPlanet);
 };
 
 function displayInfoShip(ship){
     const trHShip = document.createElement("tr");
-    trHShip.innerHTML = Object.keys(ship).map(e => capitalizeAndSeparate(e))
-    .reduce((str, key) => str += `<th>${key}<th/>`,``);
+    trHShip.innerHTML = creatingTableRowHeadings(ship);
     document.querySelector("#peopleShipTitles").appendChild(trHShip);
     
     const trDShip = document.createElement("tr");
-    trDShip.innerHTML = Object.values(ship)
-    .reduce((str, key) => str += `<td>${key}<td/>`,``);
+    trDShip.innerHTML = creatingTableRowData(ship);
     document.querySelector("#peopleShipData").appendChild(trDShip);
 };
