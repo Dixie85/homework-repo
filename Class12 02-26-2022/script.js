@@ -11,14 +11,14 @@ class Person{
         this.gender = gender;
         this.birthYear = birth_year;
         this.homeworld = homeworld;
-        this.appearances = Array.isArray(films) && films.lengt || null;
+        this.appearances = Array.isArray(films) && films.length || null;
     }
-    static async getHomeworld(obj, data) {
-                console.log(data)
+
+    static async getHomeworld(obj) {                
             if (obj instanceof Person){
                 const planet = await getData(obj.homeworld); 
                 storeHomeworldMemory(planet);
-                cleanTables();
+                cleanDetailesTables();
                 displayInfoPersonAndPlanet(obj, memory.personHomeworld);                
             } else {
                 console.log("The data is not a Person object")
@@ -29,7 +29,7 @@ class Person{
 class ShipDetails{
     constructor({cost_in_credits, cargo_capacity, passengers, starship_class }) {
         this.cost = String(cost_in_credits).replace(/(.)(?=(\d{3})+$)/g,'$1,') + `credits`;
-        this.cargoCapacity = cargo_capacity;
+        this.cargoCapacity = (Math.round(cargo_capacity * 100)/100).toLocaleString();
         this.peopleCapacity = passengers;
         this.class = starship_class;
     }
@@ -102,16 +102,15 @@ async function getInfo(url, flow) {
         const data = await getData(url);
         storeMemory(data, flow);
         console.log(memory);
-        document.querySelector("#Titles").innerHTML = "";
-        document.querySelector("#Data").innerHTML = "";
+        cleanTables();
         displayData(memory.currentData, flow);
     }
     if(flow === memory.starshipsUrl){
         const data = await getData(url);
         storeMemory(data, flow);
         console.log(memory);
-        document.querySelector("#Titles").innerHTML = "";
-        document.querySelector("#Data").innerHTML = "";
+        cleanTables();
+        cleanDetailesTables()
         displayData(memory.currentData, flow);
     }
 };
@@ -144,7 +143,8 @@ function displayData(data, flow){
     const titleKey = Object.keys(data[0]);
     console.log(titleKey)
     const trH = document.createElement("tr");
-    trH.innerHTML = titleKey.reduce((str, key) => str += `<th>${key}<th/>`,``);
+    trH.innerHTML = titleKey.map(e => capitalizeAndSeparate(e))
+    .reduce((str, key) => str += `<th>${key}<th/>`,``);
     document.querySelector("#Titles").appendChild(trH);
     console.log(trH)
     if(flow === memory.peopleUrl){
@@ -159,10 +159,11 @@ function displayDataInTbodyForPeople(data, titleKey){
     data.map(e => {            
         const trB = document.createElement("tr");
         trB.innerHTML = titleKey.reduce((str, key) => str += `<td>${e[key]}<td/>`, "")
-        trB.innerHTML +=  `<td><a href="personPlanet.html" target="_blank"><button class="Details" value="${e.name}">Details</button></a><td/>`;
+        // trB.innerHTML +=  `<td><a target=""><button class="Details" value="${e.name}">Details</button></a><td/>`;
         document.querySelector("#Data").appendChild(trB);
-        let button = trB.querySelector(".Details"); 
-        button.addEventListener("click", () => {Person.getHomeworld(e, data)});          
+        // let button = trB.querySelector(".Details"); 
+        // button.addEventListener("click", () => {Person.getHomeworld(e, data)});
+        trB.addEventListener("click", () => Person.getHomeworld(e));           
     })
 };
 
@@ -171,31 +172,62 @@ function displayDataInTbodyForShips(data, titleKey){
         const trB = document.createElement("tr");
         trB.innerHTML = titleKey.reduce((str, key) => str += `<td>${e[key]}<td/>`, "")
         document.querySelector("#Data").appendChild(trB);
+        trB.addEventListener("click", () => {
+            cleanDetailesTables()
+            displayInfoShip(e)});
     })
 };
 
 function cleanTables(){
-    document.querySelector("#peopleTitles").innerHTML = "";
-    document.querySelector("#peopleData").innerHTML = "";
+    document.querySelector("#Titles").innerHTML = "";
+    document.querySelector("#Data").innerHTML = "";
+};
+
+function cleanDetailesTables(){
+    document.querySelector("#peopleShipTitles").innerHTML = "";
+    document.querySelector("#peopleShipData").innerHTML = "";
     document.querySelector("#planetTitles").innerHTML = "";
     document.querySelector("#planetData").innerHTML = "";
-}
+};
+
+function capitalizeAndSeparate(word) {
+    return word.split(/(?=[A-Z])/)
+    .map(s => s.toLowerCase())
+    .map( e => e[0].toUpperCase() + e.slice(1))
+    .reduce((str, word) => str += `${word} ` ,"");
+};
 
 function displayInfoPersonAndPlanet(person, planet){
     
     const trHPeople = document.createElement("tr");
-    trHPeople.innerHTML = Object.keys(person).reduce((str, key) => str += `<th>${key}<th/>`,``);
-    document.querySelector("#peopleTitles").appendChild(trHPeople);
-
+    trHPeople.innerHTML = Object.keys(person).map(e => capitalizeAndSeparate(e))
+    .reduce((str, key) => str += `<th>${key}<th/>`,``);
+    document.querySelector("#peopleShipTitles").appendChild(trHPeople);
+    
     const trDPeople = document.createElement("tr");
-    trDPeople.innerHTML = Object.values(person).reduce((str, key) => str += `<td>${key}<td/>`,``);
-    document.querySelector("#peopleData").appendChild(trDPeople);
+    trDPeople.innerHTML = Object.values(person)
+    .reduce((str, key) => str += `<td>${key}<td/>`,``);
+    document.querySelector("#peopleShipData").appendChild(trDPeople);
     
     const trHPlanet = document.createElement("tr");
-    trHPlanet.innerHTML = Object.keys(planet).reduce((str, key) => str += `<th>${key}<th/>`,``);
+    trHPlanet.innerHTML = Object.keys(planet).map(e => capitalizeAndSeparate(e))
+    .reduce((str, key) => str += `<th>${key}<th/>`,``);
     document.querySelector("#planetTitles").appendChild(trHPlanet);
     
     const  trDPlanet = document.createElement("tr");
-    trDPlanet.innerHTML = Object.values(planet).reduce((str, key) => str += `<td>${key}<td/>`,``);
+    trDPlanet.innerHTML = Object.values(planet)
+    .reduce((str, key) => str += `<td>${key}<td/>`,``);
     document.querySelector("#planetData").appendChild( trDPlanet);
-}
+};
+
+function displayInfoShip(ship){
+    const trHShip = document.createElement("tr");
+    trHShip.innerHTML = Object.keys(ship).map(e => capitalizeAndSeparate(e))
+    .reduce((str, key) => str += `<th>${key}<th/>`,``);
+    document.querySelector("#peopleShipTitles").appendChild(trHShip);
+    
+    const trDShip = document.createElement("tr");
+    trDShip.innerHTML = Object.values(ship)
+    .reduce((str, key) => str += `<td>${key}<td/>`,``);
+    document.querySelector("#peopleShipData").appendChild(trDShip);
+};
