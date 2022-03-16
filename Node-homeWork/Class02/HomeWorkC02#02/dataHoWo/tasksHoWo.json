@@ -1,0 +1,50 @@
+[
+  {
+    "id": "2286f9b1-8c43-4459-af24-7821331dc218",
+    "task": "Teach programming",
+    "isFinished": false,
+    "owner": "Teri Dactyl"
+  },
+  {
+    "id": "e084c63d-6461-4e24-b6f3-611267b3a392",
+    "task": "Study progamming",
+    "isFinished": false,
+    "owner": "Olive Yew"
+  },
+  {
+    "id": "5972eb33-b73b-4ba7-a0d0-6dea9f850f4b",
+    "task": "Debug programming",
+    "isFinished": false,
+    "owner": "Teri Dactyl"
+  },
+  {
+    "id": "17a8d1ab-57f9-44ee-b394-d597df59999d",
+    "task": "Fix nodemon",
+    "isFinished": false,
+    "owner": "Peg Legge"
+  },
+  {
+    "id": "a9c4fd53-c115-45ae-9422-b03a8c51e59f",
+    "task": "Implement delete functionality",
+    "isFinished": false,
+    "owner": "Peg Legge"
+  },
+  {
+    "id": "0fe05bae-9f93-4806-a53c-d4ac3e1a294c",
+    "task": "Finish class",
+    "isFinished": false,
+    "owner": "Olive Yew"
+  },
+  {
+    "id": "fe1e1605-c7b4-42cc-b945-aed1d957f4d9",
+    "task": "Ask questions",
+    "isFinished": false,
+    "owner": "Peg Legge"
+  },
+  {
+    "id": "c82f8e82-a3a7-44f9-bbcb-c53e8a19776d",
+    "task": "Finish them all",
+    "isFinished": false,
+    "owner": "Olive Yew"
+  }
+]

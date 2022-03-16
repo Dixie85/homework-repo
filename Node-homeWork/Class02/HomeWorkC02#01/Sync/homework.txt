@@ -1,0 +1,2 @@
+"Homework 02 in Basic Node" " FINISHED!"
+ The Sync-method is used to create this file ;)
