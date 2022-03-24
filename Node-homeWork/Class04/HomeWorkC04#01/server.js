@@ -18,20 +18,16 @@ if(url === "/" && method === "GET"){
     <h2>Welcome to the world of Vinyl!<h2/>\n
     <p>Here you can find your most favorite Retro music on vinyl records</p>\n
     <p>Finding your loved record is so easy, just click on the button below</p>
-    <form action="/order_vinyl" method="POST">
-    <input type="hidden" name="order"/>
-        <button>ORDER</button>    
+        <a href="http://localhost:3000/order_vinyl"><button>ORDER</button></a>    
     </form>\n
     <p>Check out to the TOP 10 most wanted Retro HITs this week</p>
-    <form action="/week_hits" method="POST">
-    <input type="hidden" name="hits"/>
-        <button>HITS</button>    
+        <a href="http://localhost:3000/week_hits"><button>HITS</button></a>        
     </form>\n     
     `);
     return response.end();
 };
 
-if(url === "/order_vinyl" && method === "POST") {
+if(url === "/order_vinyl" && method === "GET") {
     console.log(`Order is executed`);
     response.setHeader("Content-type", "text/html");
     response.write(`
@@ -59,7 +55,7 @@ if(url === "/order_vinyl" && method === "POST") {
     return response.end();
 };
 
-if(url === "/week_hits" && method === "POST") {
+if(url === "/week_hits" && method === "GET") {
     console.log("Someone is looking at the Hits");
     emitter.emit("hits-visites");
     response.setHeader("Content-type", "text/html");
