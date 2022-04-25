@@ -1,0 +1,26 @@
+[
+  {
+    "movieName": "The Godfather",
+    "movieGenre": "Crime, Drama",
+    "movieReleaseDate": "1972",
+    "movieDirector": "Francis Ford Coppola"
+  },
+  {
+    "movieName": " The Shawshank Redemption",
+    "movieGenre": "Drama",
+    "movieReleaseDate": "1994",
+    "movieDirector": "Frank Darabont"
+  },
+  {
+    "movieName": "Citizen Kane",
+    "movieGenre": "Drama, Mystery",
+    "movieReleaseDate": "1941",
+    "movieDirector": "Orson Welles"
+  },
+  {
+    "movieName": "Gone with the Wind",
+    "movieGenre": "Drama, History, Romance",
+    "movieReleaseDate": "1939",
+    "movieDirector": " Victor Fleming"
+  }
+]
