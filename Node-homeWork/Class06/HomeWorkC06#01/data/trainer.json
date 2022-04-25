@@ -1,0 +1,47 @@
+[
+  {
+    "id": "cd32df6f-c181-4584-a2e4-0f7176e2f444",
+    "firstName": "Olive",
+    "lastName": "Yew",
+    "email": "Yew@mashine.com",
+    "isCurrentlyTeaching": true,
+    "timeEmployed": "5 year 3 months",
+    "coursesFinished": 16
+  },
+  {
+    "id": "84e090e3-7f32-46dd-93c2-6a42de8c96fc",
+    "firstName": "Aida",
+    "lastName": "Bugg",
+    "email": "Aida@mashine.com",
+    "isCurrentlyTeaching": false,
+    "timeEmployed": "11 months",
+    "coursesFinished": 4
+  },
+  {
+    "id": "3454ff02-d39d-4819-802d-ed24ae2fef76",
+    "firstName": "Teri",
+    "lastName": "Dactyl",
+    "email": "Dactyl@mashine.com",
+    "isCurrentlyTeaching": true,
+    "timeEmployed": " 2 year 5 months",
+    "coursesFinished": 7
+  },
+  {
+    "id": "ea0ad8f1-868a-4aee-a090-f92f9112e956",
+    "firstName": "Peg",
+    "lastName": "Legge",
+    "email": "Legge@mashine.com",
+    "isCurrentlyTeaching": false,
+    "timeEmployed": "1 year 4 months",
+    "coursesFinished": 6
+  },
+  {
+    "id": "854c2ea7-e145-489b-aafb-c1d4372d49a5",
+    "firstName": "Maureen",
+    "lastName": "Biologist",
+    "email": "Maureen@proba.com",
+    "isCurrentlyTeaching": false,
+    "timeEmployed": "4 year 2 months",
+    "coursesFinished": 12
+  }
+]
