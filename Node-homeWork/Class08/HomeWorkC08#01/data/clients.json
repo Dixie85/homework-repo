@@ -1,0 +1,49 @@
+{
+  "clients": [
+    {
+      "id": "cd32df6f-c181-4584-a2e4-0f7176e2f444",
+      "firstName": "Olive",
+      "lastName": "Yew",
+      "email": "Yew@mashine.com",
+      "animal": "Cat",
+      "petName": "Luna",
+      "age": 3
+    },
+    {
+      "id": "84e090e3-7f32-46dd-93c2-6a42de8c96fc",
+      "firstName": "Aida",
+      "lastName": "Bugg",
+      "email": "Aida@mashine.com",
+      "animal": "Dog",
+      "petName": "Bob",
+      "age": 6
+    },
+    {
+      "id": "3454ff02-d39d-4819-802d-ed24ae2fef76",
+      "firstName": "Teri",
+      "lastName": "Dactyl",
+      "email": "Dactyl@mashine.com",
+      "animal": "Cat",
+      "petName": "Luna",
+      "age": 3
+    },
+    {
+      "id": "ea0ad8f1-868a-4aee-a090-f92f9112e956",
+      "firstName": "Peg",
+      "lastName": "Legge",
+      "email": "Legge@mashine.com",
+      "animal": "Dog",
+      "petName": "Klay",
+      "age": 1
+    },
+    {
+      "id": "854c2ea7-e145-489b-aafb-c1d4372d49a5",
+      "firstName": "Maureen",
+      "lastName": "Biologist",
+      "email": "Maureen@proba.com",
+      "animal": "Cat",
+      "petName": "Zuzu",
+      "age": 12
+    }
+  ]
+}
