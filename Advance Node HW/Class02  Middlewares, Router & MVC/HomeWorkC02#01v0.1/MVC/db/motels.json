@@ -1,0 +1,16 @@
+[
+  {
+    "hotelName": "The Tourist Hike Motel",
+    "raiting": "3.5/5",
+    "hotelRooms": "20",
+    "location": "Düsseldorf",
+    "pricePerNight": "82EUR"
+  },
+  {
+    "hotelName": "The Roller Coaster Motel",
+    "raiting": "3/5",
+    "hotelRooms": "13",
+    "location": "Cologne",
+    "pricePerNight": "73EUR"
+  }
+]
