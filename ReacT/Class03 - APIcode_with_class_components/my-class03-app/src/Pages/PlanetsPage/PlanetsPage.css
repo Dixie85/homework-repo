@@ -1,0 +1,13 @@
+.planets__display__container {
+    display: flex;
+    padding: 3%;
+    padding-top: 0.5%;
+    min-height: 300px;
+    height: auto;
+}
+
+.button__container{
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-evenly;
+}
